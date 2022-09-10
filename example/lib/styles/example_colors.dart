@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ExampleColorTheme {
+class ExampleColors {
   static const neutralsGrey0 = Color(0xFF292929);
   static const neutralsGrey8 = Color(0xFF3D3D3D);
   static const neutralsGrey16 = Color(0xFF525252);

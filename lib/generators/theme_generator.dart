@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
+import 'package:flutter_figma_theme_generator/generators/theme_colors_generator.dart';
 import 'package:flutter_figma_theme_generator/model/generated_content.dart';
-import 'package:flutter_figma_theme_generator/utils/color_generator.dart';
-import 'package:flutter_figma_theme_generator/utils/font_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/color_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/font_generator.dart';
 
 class ThemeGenerator {
+  static bool _generatedBase = false;
+
   static GeneratedContent generateTheme(String themeFile, String themeFileName, PubspecConfig pubspecConfig) {
     final generators = [
       FontGenerator(),
@@ -17,7 +20,13 @@ class ThemeGenerator {
         return generator.generate(json, pubspecConfig);
       }
     }
-    return GeneratedContent({}, ['No generator found for schema for file $themeFileName']);
+    final content = ThemeColorsGenerator().generate(
+      json,
+      pubspecConfig,
+      _generatedBase,
+    );
+    _generatedBase = true;
+    return content;
   }
 }
 

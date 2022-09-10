@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
+import 'package:flutter_figma_theme_generator/generators/theme_generator.dart';
 import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
-import 'package:flutter_figma_theme_generator/utils/theme_generator.dart';
 
 class ColorGenerator extends BaseGenerator {
   final _warnings = <String>[];
@@ -24,11 +24,11 @@ class ColorGenerator extends BaseGenerator {
     }
 
     var colorFile = '''import 'package:flutter/material.dart';\n\n''';
-    colorFile += 'class ${pubspecConfig.projectName.upperCamelCase}ColorTheme {\n';
+    colorFile += 'class ${pubspecConfig.projectName.upperCamelCase}Colors {\n';
     colorFile += colors.entries.map((color) => '  static const ${color.key} = Color(${color.value});\n').join();
     colorFile += '}\n';
 
-    files['${pubspecConfig.projectName.snakeCase}_color_theme.dart'] = colorFile;
+    files['${pubspecConfig.projectName.snakeCase}_colors'] = colorFile;
 
     return GeneratedContent(files, _warnings);
   }

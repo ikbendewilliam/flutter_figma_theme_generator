@@ -1,8 +1,8 @@
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
+import 'package:flutter_figma_theme_generator/generators/theme_generator.dart';
 import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/model/text_style.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
-import 'package:flutter_figma_theme_generator/utils/theme_generator.dart';
 
 class FontGenerator extends BaseGenerator {
   @override
@@ -31,7 +31,7 @@ class FontGenerator extends BaseGenerator {
     textStyleFile += textStyles.entries.map((textStyle) => '${textStyle.key} = const ${textStyle.value.toString()}').join(',\n        ');
     textStyleFile += ';\n}\n';
 
-    files['${pubspecConfig.projectName.snakeCase}_text_theme.dart'] = textStyleFile;
+    files['${pubspecConfig.projectName.snakeCase}_text_theme'] = textStyleFile;
 
     return GeneratedContent(files, warnings);
   }

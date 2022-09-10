@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
-import 'package:flutter_figma_theme_generator/utils/font_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/font_generator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
-import 'package:flutter_figma_theme_generator/utils/theme_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/theme_generator.dart';
 import 'package:path/path.dart';
 
 Future<void> main(List<String> args) async {
@@ -37,7 +37,9 @@ Future<void> main(List<String> args) async {
     throw Exception('This program requires a config folder. Configuration is set to `$configPath`');
   }
   final themeFiles = configFolder.listSync(recursive: true).whereType<File>().where((e) => e.path.endsWith('.json'));
+  // TODO: First process default theme (and add to config)
   final warnings = await Future.wait(themeFiles.map((e) => _processThemeFile(e, pubspecConfig)));
+  // TODO: Add theme.of file
   final allWarnings = warnings.expand((e) => e).toSet();
   if (allWarnings.isNotEmpty) {
     print('Completed with warnings:');
@@ -57,6 +59,7 @@ Future<List<String>> _processThemeFile(File themeFile, PubspecConfig pubspecConf
   if (!themeDirectory.existsSync()) {
     themeDirectory.createSync(recursive: true);
   }
+
   await Future.wait(generatedTheme.files.entries.map((fileEntry) async {
     final file = File(join('lib', 'styles', '${fileEntry.key}.dart'));
     if (!file.existsSync()) {
@@ -65,5 +68,6 @@ Future<List<String>> _processThemeFile(File themeFile, PubspecConfig pubspecConf
     await file.writeAsString(fileEntry.value);
     print('created file ${file.path}');
   }));
+
   return generatedTheme.warnings;
 }
