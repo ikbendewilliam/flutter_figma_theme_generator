@@ -1,0 +1,17 @@
+name: flutter_figma_theme_generator
+description: A new Flutter package project.
+version: 0.0.1
+homepage: https://github.com/ikbendewilliam/flutter_figma_theme_generator
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  args: ^2.3.0
+  path: ^1.8.2
+  yaml: ^3.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0

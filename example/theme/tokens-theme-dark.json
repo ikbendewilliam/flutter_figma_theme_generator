@@ -1,0 +1,179 @@
+{
+  "Dark mode": {
+    "UI": {
+      "bg": {
+        "splash": {
+          "value": "{neutrals.blue.24}",
+          "type": "color"
+        },
+        "canvas": {
+          "value": "{neutrals.blue.0}",
+          "type": "color"
+        },
+        "surface1": {
+          "value": "{neutrals.blue.8}",
+          "type": "color"
+        },
+        "canvas-block": {
+          "value": "rgba({neutrals.blue.8}, .64)",
+          "type": "color"
+        },
+        "onimg-blurred": {
+          "value": "rgba({UI.bg.canvas}, .72)",
+          "type": "color"
+        }
+      },
+      "content": {
+        "text": {
+          "default": {
+            "value": "{neutrals.blue.96}",
+            "type": "color"
+          },
+          "subtle": {
+            "value": "{neutrals.blue.56}",
+            "type": "color"
+          },
+          "faded": {
+            "value": "{neutrals.blue.40}",
+            "type": "color"
+          },
+          "selected": {
+            "value": "{brand.c1.56}",
+            "type": "color"
+          }
+        },
+        "splash": {
+          "default": {
+            "value": "{brand.c1.56}",
+            "type": "color"
+          },
+          "faded": {
+            "value": "{UI.bg.splash}",
+            "type": "color"
+          }
+        }
+      },
+      "action": {
+        "default": {
+          "value": "{brand.c1.56}",
+          "type": "color"
+        },
+        "ondefault": {
+          "value": "{brand.c1.0}",
+          "type": "color"
+        },
+        "subtle": {
+          "value": "{neutrals.blue.48}",
+          "type": "color"
+        },
+        "danger": {
+          "value": "{system.sem-n.56}",
+          "type": "color"
+        }
+      },
+      "border": {
+        "onCanvas": {
+          "value": "{neutrals.blue.16}",
+          "type": "color"
+        }
+      },
+      "divider": {
+        "onCanvas": {
+          "value": "{neutrals.blue.16}",
+          "type": "color"
+        }
+      }
+    },
+    "intro": {
+      "value": [
+        {
+          "x": "0",
+          "y": "-4",
+          "blur": "8",
+          "spread": "0",
+          "color": "rgba({neutrals.blue.32}, .04)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "-8",
+          "blur": "16",
+          "spread": "0",
+          "color": "rgba({neutrals.blue.32}, .04)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "-12",
+          "blur": "24",
+          "spread": "0",
+          "color": "rgba({neutrals.blue.32}, .04)",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "component": {
+      "tabbar": {
+        "bg": {
+          "value": "rgba({UI.bg.canvas}, .8)",
+          "type": "color"
+        },
+        "tab-active": {
+          "value": "{UI.action.default}",
+          "type": "color"
+        },
+        "tab-inactive": {
+          "value": "{UI.action.subtle}",
+          "type": "color"
+        }
+      },
+      "card": {
+        "highlight": {
+          "bg": {
+            "value": "{system.sem-w.72}",
+            "type": "color"
+          },
+          "border": {
+            "value": "{UI.bg.canvas}",
+            "type": "color"
+          },
+          "text-default": {
+            "value": "{system.sem-w.8}",
+            "type": "color"
+          },
+          "text-subtle": {
+            "value": "{system.sem-w.32}",
+            "type": "color"
+          },
+          "action-subtle": {
+            "value": "{system.sem-w.24}",
+            "type": "color"
+          }
+        },
+        "default": {
+          "bg": {
+            "value": "{UI.bg.canvas}",
+            "type": "color"
+          },
+          "border": {
+            "value": "{UI.border.onCanvas}",
+            "type": "color"
+          },
+          "text-default": {
+            "value": "{UI.content.text.default}",
+            "type": "color"
+          },
+          "text-subtle": {
+            "value": "{UI.content.text.subtle}",
+            "type": "color"
+          },
+          "action-subtle": {
+            "value": "{UI.action.subtle}",
+            "type": "color"
+          }
+        }
+      }
+    }
+  }
+}

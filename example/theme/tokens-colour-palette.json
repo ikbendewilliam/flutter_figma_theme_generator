@@ -1,0 +1,502 @@
+{
+  "Colour palette": {
+    "neutrals": {
+      "grey": {
+        "0": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "100": {
+          "value": "hsla({neutrals.greyscale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.100}, 1)",
+          "type": "color"
+        }
+      },
+      "greyscale": {
+        "hue": {
+          "value": "0",
+          "type": "Color-config"
+        },
+        "saturation": {
+          "value": "0%",
+          "type": "Color-config"
+        }
+      },
+      "blue": {
+        "0": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.bluescale.saturation}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "100": {
+          "value": "hsla({neutrals.bluescale.hue}, {neutrals.greyscale.saturation}, {lightness.scale.100}, 1)",
+          "type": "color"
+        }
+      },
+      "bluescale": {
+        "hue": {
+          "value": "216",
+          "type": "Color-config"
+        },
+        "saturation": {
+          "value": "32%",
+          "type": "Color-config"
+        }
+      }
+    },
+    "system": {
+      "sem-n": {
+        "0": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-dark}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-dark}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-dark}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-middark}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-middark}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-middark}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-midlight}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-midlight}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-midlight}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-light},{lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-light}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-light}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({system.sem-n.hue}, {system.sem-n.saturation-light}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "hue": {
+          "value": "0",
+          "type": "Color-config"
+        },
+        "saturation-dark": {
+          "value": "64%",
+          "type": "Color-config"
+        },
+        "saturation-middark": {
+          "value": "72%",
+          "type": "Color-config"
+        },
+        "saturation-midlight": {
+          "value": "84%",
+          "type": "Color-config"
+        },
+        "saturation-light": {
+          "value": "92%",
+          "type": "Color-config"
+        }
+      },
+      "sem-w": {
+        "0": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-dark}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-dark}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-dark}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-middark}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-middark}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-middark}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-midlight}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-midlight}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-midlight}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-light}, {lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-light}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-light}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({system.sem-w.hue}, {system.sem-w.saturation-light}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "hue": {
+          "value": "32",
+          "type": "Color-config"
+        },
+        "saturation-dark": {
+          "value": "64%",
+          "type": "Color-config"
+        },
+        "saturation-middark": {
+          "value": "72%",
+          "type": "Color-config"
+        },
+        "saturation-midlight": {
+          "value": "84%",
+          "type": "Color-config"
+        },
+        "saturation-light": {
+          "value": "92%",
+          "type": "Color-config"
+        }
+      },
+      "sem-s": {
+        "0": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-dark}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-dark}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-dark}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-middark}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-middark}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-middark}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-midlight}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-midlight}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-midlight}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-light}, {lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-light}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-light}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({system.sem-s.hue}, {system.sem-s.saturation-light}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "hue": {
+          "value": "132",
+          "type": "Color-config"
+        },
+        "saturation-dark": {
+          "value": "48%",
+          "type": "Color-config"
+        },
+        "saturation-middark": {
+          "value": "52%",
+          "type": "Color-config"
+        },
+        "saturation-midlight": {
+          "value": "64%",
+          "type": "Color-config"
+        },
+        "saturation-light": {
+          "value": "72%",
+          "type": "Color-config"
+        }
+      }
+    },
+    "brand": {
+      "c1": {
+        "0": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-dark}, {lightness.scale.0}, 1)",
+          "type": "color"
+        },
+        "8": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-dark}, {lightness.scale.8}, 1)",
+          "type": "color"
+        },
+        "16": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-dark}, {lightness.scale.16}, 1)",
+          "type": "color"
+        },
+        "24": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-middark}, {lightness.scale.24}, 1)",
+          "type": "color"
+        },
+        "32": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-middark}, {lightness.scale.32}, 1)",
+          "type": "color"
+        },
+        "40": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-middark}, {lightness.scale.40}, 1)",
+          "type": "color"
+        },
+        "48": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-midlight}, {lightness.scale.48}, 1)",
+          "type": "color"
+        },
+        "56": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-midlight}, {lightness.scale.56}, 1)",
+          "type": "color"
+        },
+        "64": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-midlight}, {lightness.scale.64}, 1)",
+          "type": "color"
+        },
+        "72": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-light}, {lightness.scale.72}, 1)",
+          "type": "color"
+        },
+        "80": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-light}, {lightness.scale.80}, 1)",
+          "type": "color"
+        },
+        "88": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-light}, {lightness.scale.88}, 1)",
+          "type": "color"
+        },
+        "96": {
+          "value": "hsla({brand.c1.hue}, {brand.c1.saturation-light}, {lightness.scale.96}, 1)",
+          "type": "color"
+        },
+        "hue": {
+          "value": "40",
+          "type": "Color-config"
+        },
+        "saturation-dark": {
+          "value": "40%",
+          "type": "Color-config"
+        },
+        "saturation-middark": {
+          "value": "48%",
+          "type": "Color-config"
+        },
+        "saturation-midlight": {
+          "value": "56%",
+          "type": "Color-config"
+        },
+        "saturation-light": {
+          "value": "64%",
+          "type": "Color-config"
+        }
+      }
+    },
+    "lightness": {
+      "scale": {
+        "0": {
+          "value": "16%",
+          "type": "Color-config"
+        },
+        "8": {
+          "value": "24%",
+          "type": "Color-config"
+        },
+        "16": {
+          "value": "32%",
+          "type": "Color-config"
+        },
+        "24": {
+          "value": "40%",
+          "type": "Color-config"
+        },
+        "32": {
+          "value": "48%",
+          "type": "Color-config"
+        },
+        "40": {
+          "value": "56%",
+          "type": "Color-config"
+        },
+        "48": {
+          "value": "64%",
+          "type": "Color-config"
+        },
+        "56": {
+          "value": "72%",
+          "type": "Color-config"
+        },
+        "64": {
+          "value": "80%",
+          "type": "Color-config"
+        },
+        "72": {
+          "value": "84%",
+          "type": "Color-config"
+        },
+        "80": {
+          "value": "88%",
+          "type": "Color-config"
+        },
+        "88": {
+          "value": "92%",
+          "type": "Color-config"
+        },
+        "96": {
+          "value": "96%",
+          "type": "Color-config"
+        },
+        "100": {
+          "value": "100%",
+          "type": "Color-config"
+        }
+      }
+    }
+  }
+}
