@@ -1,20 +1,17 @@
-import 'dart:convert';
-
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
-import 'package:flutter_figma_theme_generator/generators/theme_colors_generator.dart';
-import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/generators/color_generator.dart';
 import 'package:flutter_figma_theme_generator/generators/font_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/theme_colors_generator.dart';
+import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 
 class ThemeGenerator {
   static bool _generatedBase = false;
 
-  static GeneratedContent generateTheme(String themeFile, String themeFileName, PubspecConfig pubspecConfig) {
+  static GeneratedContent generateTheme(Map<String, dynamic> json, String themeFileName, PubspecConfig pubspecConfig) {
     final generators = [
       FontGenerator(),
       ColorGenerator(),
     ];
-    final json = jsonDecode(themeFile) as Map<String, dynamic>;
     for (final generator in generators) {
       if (generator.matchesSchema(json)) {
         return generator.generate(json, pubspecConfig);
@@ -23,7 +20,7 @@ class ThemeGenerator {
     final content = ThemeColorsGenerator().generate(
       json,
       pubspecConfig,
-      _generatedBase,
+      !_generatedBase,
     );
     _generatedBase = true;
     return content;
