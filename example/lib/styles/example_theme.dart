@@ -15,8 +15,8 @@ class ExampleTheme {
   ExampleTheme(this.colors, this.fonts);
 
   static ExampleTheme of(BuildContext context, {
-    forceDefault = false,
-    forceLightMode = false,
+    bool forceDefault = false,
+    bool forceLightMode = false,
   }) {
     if (forceDefault) return _exampleColorsThemeDefault;
     if (forceLightMode) return _exampleColorsThemeLightMode;

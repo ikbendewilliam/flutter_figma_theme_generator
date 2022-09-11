@@ -28,7 +28,7 @@ class ThemeColorsGenerator {
       baseColorFile += 'class $instanceName {\n';
       baseColorFile += colors.entries.map((color) => '  final Color ${color.key};\n').join();
       baseColorFile += '\n  ${_isConst ? 'const' : ''} $instanceName({\n';
-      baseColorFile += colors.entries.map((color) => '    ${color.key},\n').join();
+      baseColorFile += colors.entries.map((color) => '    Color? ${color.key},\n').join();
       baseColorFile += '  })  : ';
       baseColorFile += colors.entries.map((color) => '${color.key} = ${color.key} ?? ${color.value}').join(',\n        ');
       baseColorFile += ';\n';

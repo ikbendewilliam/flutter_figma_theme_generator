@@ -9,7 +9,7 @@ class CurrentThemeGenerator {
     final themeName = '${pubspecConfig.projectName.upperCamelCase}Theme';
     final fontTheme = hasFontTheme ? '${pubspecConfig.projectName.upperCamelCase}TextTheme' : null;
     final fontThemeArgument = fontTheme != null ? ', const ${fontTheme.upperCamelCase}()' : '';
-    final projectNameLength = pubspecConfig.projectName.length;
+    final projectNameLength = pubspecConfig.projectName.upperCamelCase.length; // Convert to camel case to not have _ in the name
     final themeStartLength = projectNameLength + 'ColorsTheme'.length;
 
     var themeFile = 'import \'package:flutter/material.dart\';\n\n';
@@ -32,7 +32,7 @@ class CurrentThemeGenerator {
       themeFile += ') => _${defaultTheme.camelCase};\n';
     } else {
       themeFile += ', {\n';
-      themeFile += generatedInstances.map((e) => '    force${e.substring(themeStartLength).upperCamelCase} = false,\n').join();
+      themeFile += generatedInstances.map((e) => '    bool force${e.substring(themeStartLength).upperCamelCase} = false,\n').join();
       themeFile += '  }) {\n';
       themeFile += generatedInstances.map((e) => '    if (force${e.substring(themeStartLength).upperCamelCase}) return _${e.camelCase};\n').join();
       themeFile += '\n';
