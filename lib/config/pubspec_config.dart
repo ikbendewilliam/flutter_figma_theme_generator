@@ -18,7 +18,7 @@ class PubspecConfig {
     if (projectName == null || projectName.isEmpty) {
       throw Exception('Could not parse the pubspec.yaml, project name not found');
     }
-    fonts.addAll(doc['flutter']?['fonts']?.map((e) => e['family'].toString()).toList() ?? []);
+    fonts.addAll(doc['flutter']?['fonts']?.map<String>((e) => e['family'].toString()).toList() ?? []);
 
     this.projectName = projectName;
     final config = doc['flutter_figma_theme_generator'];
