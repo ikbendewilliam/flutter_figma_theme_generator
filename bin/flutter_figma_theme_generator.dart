@@ -41,20 +41,24 @@ Future<void> main(List<String> args) async {
     throw Exception('This program requires a config folder. Configuration is set to `$configPath`');
   }
   final themeFiles = configFolder.listSync(recursive: true).whereType<File>().where((e) => e.path.endsWith('.json'));
-  final nonThemeGenerators = [FontGenerator(), ColorGenerator()];
+  final fontGenerator = FontGenerator();
+  final nonThemeGenerators = [fontGenerator, ColorGenerator()];
   final contents = await _readFiles(themeFiles);
   var defaultTheme = pubspecConfig.defaultTheme ??
       contents.entries.firstWhere((element) => nonThemeGenerators.any((e) => e.matchesSchema(element.value)), orElse: () => throw Exception('Could not find any theme')).key;
+  final hasFontTheme = contents.values.any(fontGenerator.matchesSchema);
   final generatedContents = <GeneratedContent>[];
   final warnings = <String>[];
   if (!contents.containsKey(defaultTheme)) {
     warnings.add('Could not find the default theme `$defaultTheme` in the theme folder. Defaulting to the first theme found. Found: ${contents.keys.join(', ')}');
     defaultTheme = contents.entries.first.key;
   }
+
   generatedContents.add(await _processThemeFile(contents[defaultTheme]!, defaultTheme, pubspecConfig));
   generatedContents.addAll(await Future.wait(contents.entries.where((element) => element.key != defaultTheme).map((e) => _processThemeFile(e.value, e.key, pubspecConfig))));
   final generatedInstances = generatedContents.map((e) => e.themeInstanceName).whereType<String>();
-  generatedContents.add(await _generateThemeFile(generatedInstances, pubspecConfig));
+  generatedContents.add(await _generateThemeFile(generatedInstances, pubspecConfig, hasFontTheme));
+
   final allWarnings = generatedContents.expand((e) => e.warnings).toSet();
   allWarnings.addAll(warnings);
   if (allWarnings.isNotEmpty) {
@@ -67,8 +71,8 @@ Future<void> main(List<String> args) async {
   }
 }
 
-Future<GeneratedContent> _generateThemeFile(Iterable<String> generatedInstances, PubspecConfig pubspecConfig) async {
-  final generatedTheme = CurrentThemeGenerator.generateTheme(generatedInstances, pubspecConfig);
+Future<GeneratedContent> _generateThemeFile(Iterable<String> generatedInstances, PubspecConfig pubspecConfig, bool hasFontTheme) async {
+  final generatedTheme = CurrentThemeGenerator.generateTheme(generatedInstances, pubspecConfig, hasFontTheme);
   await _createFile(generatedTheme);
   return generatedTheme;
 }

@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 
 import 'example_colors_theme_default.dart';
 import 'example_colors_theme_light_mode.dart';
+import 'example_text_theme.dart';
+
 
 class ExampleTheme {
-  static final _exampleColorsThemeDefault = ExampleColorsThemeDefault();
-  static final _exampleColorsThemeLightMode = ExampleColorsThemeLightMode.instance;
+  static final _exampleColorsThemeDefault = ExampleTheme(ExampleColorsThemeDefault(), const ExampleTextTheme());
+  static final _exampleColorsThemeLightMode = ExampleTheme(ExampleColorsThemeLightMode.instance, const ExampleTextTheme());
 
-  static ExampleColorsThemeDefault of(BuildContext context, {
-    forceExampleColorsThemeDefault = false,
-    forceExampleColorsThemeLightMode = false,
+  final ExampleColorsThemeDefault colors;
+  final ExampleTextTheme fonts;
+
+  ExampleTheme(this.colors, this.fonts);
+
+  static ExampleTheme of(BuildContext context, {
+    forceDefault = false,
+    forceLightMode = false,
   }) {
-    if (forceExampleColorsThemeDefault) return _exampleColorsThemeDefault;
-    if (forceExampleColorsThemeLightMode) return _exampleColorsThemeLightMode;
+    if (forceDefault) return _exampleColorsThemeDefault;
+    if (forceLightMode) return _exampleColorsThemeLightMode;
 
     final brightness = MediaQuery.of(context).platformBrightness;
     if (brightness == Brightness.dark) return _exampleColorsThemeDefault;
