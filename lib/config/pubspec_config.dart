@@ -6,6 +6,8 @@ class PubspecConfig {
   late final String projectName;
   late final String configPath;
   late final String? defaultTheme;
+  late final String? defaultLight;
+  late final String? defaultDark;
   late final bool defaultThemeIsDarkMode;
   final fonts = <String>[];
 
@@ -24,6 +26,8 @@ class PubspecConfig {
     final config = doc['flutter_figma_theme_generator'];
     configPath = config?['config_path'] ?? _defaultConfigPath;
     defaultTheme = config?['default_theme'];
+    defaultLight = config?['default_light'];
+    defaultDark = config?['default_dark'];
     defaultThemeIsDarkMode = config?['default_theme_is_dark_mode'] == true;
   }
 }

@@ -22,11 +22,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts:
-    - family: OpenSans
-      fonts:
-        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
 
 flutter_figma_theme_generator:
   default_theme: tokens-theme-dark.json
   default_theme_is_dark_mode: true
+  default_light: ExampleColorsThemeLightMode

@@ -46,27 +46,69 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Figma Theme Generator Demo'),
-        backgroundColor: theme.colors.uIBgSurface1,
+        backgroundColor: theme.colors.uIActionBg,
       ),
-      backgroundColor: theme.colors.uIBgCanvas,
+      backgroundColor: theme.colors.uIBgScreen,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'You have pushed the button this many times:',
-              style: theme.fonts.titleMedium.copyWith(color: theme.colors.uIContentTextDefault),
+              style: theme.textStyles.titleMedium.copyWith(color: theme.colors.uIContentTextDefault),
               textAlign: TextAlign.center,
             ),
             Text(
               '$_counter',
-              style: theme.fonts.titleExtraLarge.copyWith(color: theme.colors.uIContentTextSelected),
+              style: theme.textStyles.titleExtraLarge.copyWith(color: theme.colors.uIContentTextSubtle),
             ),
             const SizedBox(height: 32),
-            Text(
-              'Change the OS theme to see the theme change',
-              style: theme.fonts.titleMedium.copyWith(color: theme.colors.uIContentTextDefault),
-              textAlign: TextAlign.center,
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeRedModeType;
+                });
+              },
+              color: ExampleTheme.of(context, forceRedMode: true).colors.uIBgScreen,
+              child: Text(
+                'Set Red Mode',
+                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceRedMode: true).colors.uIContentTextDefault),
+              ),
+            ),
+            const SizedBox(height: 32),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeLightModeType;
+                });
+              },
+              color: ExampleTheme.of(context, forceLightMode: true).colors.uIBgScreen,
+              child: Text(
+                'Set Light Mode',
+                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceLightMode: true).colors.uIContentTextDefault),
+              ),
+            ),
+            const SizedBox(height: 32),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeDefaultType;
+                });
+              },
+              color: ExampleTheme.of(context, forceDefault: true).colors.uIBgScreen,
+              child: Text(
+                'Set Default Mode',
+                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceDefault: true).colors.uIContentTextDefault),
+              ),
+            ),
+            const SizedBox(height: 32),
+            MaterialButton(
+              onPressed: () {
+                setState(() {
+                  ExampleTheme.userPrefferedThemeType = null;
+                });
+              },
+              child: const Text('Set System Mode'),
             ),
           ],
         ),
@@ -74,8 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        backgroundColor: theme.colors.uIActionDanger,
-        child: const Icon(Icons.add),
+        backgroundColor: theme.colors.uIActionBg,
+        child: Icon(
+          Icons.add,
+          color: theme.colors.uIContentTextDefault,
+        ),
       ),
     );
   }

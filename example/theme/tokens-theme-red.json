@@ -1,20 +1,20 @@
 {
-  "Light mode": {
+  "red mode": {
     "UI": {
       "bg": {
         "screen": {
-          "value": "{neutrals.blue.100}",
+          "value": "{neutrals.red.24}",
           "type": "color"
         }
       },
       "content": {
         "text": {
           "default": {
-            "value": "{neutrals.blue.0}",
+            "value": "{neutrals.red.0}",
             "type": "color"
           },
           "subtle": {
-            "value": "{neutrals.blue.24}",
+            "value": "{neutrals.red.100}",
             "type": "color"
           }
         }
