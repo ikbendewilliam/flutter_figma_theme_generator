@@ -37,11 +37,11 @@ class FontGenerator extends BaseGenerator {
   }
 
   TextStyle _generateTextStyle(Map<String, dynamic> data, Map<String, dynamic> typography) {
-    final fontFamily = _fromDataOrTypography(data, 'fontFamily', typography);
-    final fontWeight = _fromDataOrTypography(data, 'fontWeight', typography);
-    final fontSizeData = _fromDataOrTypography(data, 'fontSize', typography);
-    final lineHeight = _fromDataOrTypography(data, 'lineHeight', typography);
-    final letterSpacing = _fromDataOrTypography(data, 'letterSpacing', typography);
+    final fontFamily = _fromDataOrTypography(data['fontFamily'] as String?, typography);
+    final fontWeight = _fromDataOrTypography(data['fontWeight'] as String?, typography);
+    final fontSizeData = _fromDataOrTypography(data['fontSize'] as String?, typography);
+    final lineHeight = _fromDataOrTypography(data['lineHeight'] as String?, typography);
+    final letterSpacing = _fromDataOrTypography(data['letterSpacing'] as String?, typography);
 
     final fontSize = double.tryParse(fontSizeData ?? '');
 
@@ -54,13 +54,38 @@ class FontGenerator extends BaseGenerator {
     );
   }
 
-  String? _fromDataOrTypography(Map<String, dynamic> data, String key, Map<String, dynamic> typography) {
-    final dataValue = data[key];
-    if (!dataValue.startsWith('{') || !dataValue.endsWith('}')) return dataValue;
-    final typographyKey = dataValue.substring(1, dataValue.length - 1);
-    final value = typography[typographyKey];
-    if (value is! Map<String, dynamic>) return dataValue;
-    return value['value'] as String?;
+  String? _fromDataOrTypography(String? data, Map<String, dynamic> typography) {
+    if (data == null) return null;
+    if (data.contains(RegExp(r'(\/|\*|round\(.+\)|\(.+\))'))) {
+      return RegExp(r'({[^{}]+}|\d+|round\(.+\)|\(.+\))').allMatches(data).fold(1.0, (previousValue, element) {
+        String operator;
+        if (element.start == 0) {
+          if (data.startsWith('round(') && data.endsWith(')')) {
+            return double.tryParse(_fromDataOrTypography(data.substring(6, data.length - 1), typography) ?? '')?.roundToDouble() ?? 1.0;
+          } else if (data.startsWith('(') && data.endsWith(')')) {
+            return double.tryParse(_fromDataOrTypography(data.substring(1, data.length - 1), typography) ?? '') ?? 1.0;
+          } else {
+            operator = '*';
+          }
+        } else {
+          operator = data.substring(element.start - 1, element.start);
+        }
+        final nextValue = double.tryParse(_fromDataOrTypography(data.substring(element.start, element.end), typography) ?? '') ?? 1;
+        if (operator == '/') {
+          return previousValue / nextValue;
+        } else {
+          return previousValue * nextValue;
+        }
+      }).toString();
+    }
+    if (!data.startsWith('{') || !data.endsWith('}')) return data;
+    try {
+      final typographyKeys = data.substring(1, data.length - 1).split('.');
+      final value = typographyKeys.fold(typography, (value, e) => value[e]);
+      return _fromDataOrTypography(value['value'], typography);
+    } catch (e) {
+      return data;
+    }
   }
 
   double? _getLetterSpacing(String? letterSpacing) {
