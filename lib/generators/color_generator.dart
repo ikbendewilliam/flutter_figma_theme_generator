@@ -66,6 +66,7 @@ class ColorGenerator extends BaseGenerator {
       final colorPaletteKeys = data.substring(1, data.length - 1).split('.');
       final value = colorPaletteKeys.fold(colorPalette, (value, e) => value[e]);
       amount = value['value'] as String?;
+      if (amount != null && amount.startsWith('{') && amount.endsWith('}')) return _valueOrFromColorPalette(amount, colorPalette);
     }
     amount ??= data;
     if (amount.endsWith('%')) {
