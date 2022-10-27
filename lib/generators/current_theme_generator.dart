@@ -20,7 +20,7 @@ class CurrentThemeGenerator {
     if (defaultDark != null && !generatedInstances.contains(defaultDark.upperCamelCase)) {
       defaultDark = null;
     }
-    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode && otherThemes.isEmpty ? defaultTheme.camelCase : otherThemes.first.camelCase;
+    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode || otherThemes.isEmpty ? defaultTheme.camelCase : otherThemes.first.camelCase;
     const enumName = 'ThemeType';
 
     var themeFile = 'import \'package:flutter/material.dart\';\n\n';
