@@ -15,12 +15,12 @@ class CurrentThemeGenerator {
     if (defaultLight != null && !generatedInstances.contains(defaultLight.upperCamelCase)) {
       defaultLight = null;
     }
-    defaultLight ??= pubspecConfig.defaultThemeIsDarkMode ? otherThemes.first.camelCase : defaultTheme.camelCase;
+    defaultLight ??= pubspecConfig.defaultThemeIsDarkMode && otherThemes.isNotEmpty ? otherThemes.first.camelCase : defaultTheme.camelCase;
     var defaultDark = pubspecConfig.defaultDark?.camelCase;
     if (defaultDark != null && !generatedInstances.contains(defaultDark.upperCamelCase)) {
       defaultDark = null;
     }
-    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode ? defaultTheme.camelCase : otherThemes.first.camelCase;
+    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode && otherThemes.isEmpty ? defaultTheme.camelCase : otherThemes.first.camelCase;
     const enumName = 'ThemeType';
 
     var themeFile = 'import \'package:flutter/material.dart\';\n\n';
@@ -49,7 +49,7 @@ class CurrentThemeGenerator {
     themeFile += '\n';
     themeFile += '  static $themeName of(BuildContext context';
     if (generatedInstances.length == 1) {
-      themeFile += ') => ${defaultTheme.camelCase};\n';
+      themeFile += ') => _${defaultTheme.camelCase};\n';
       themeFile += '}\n';
     } else {
       themeFile += ', {\n';
