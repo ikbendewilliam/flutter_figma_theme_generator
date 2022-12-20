@@ -1,5 +1,5 @@
 name: flutter_figma_theme_generator
-description: A new Flutter package project.
+description: A command-line tool to generate Flutter theme files from Figma design tokens.
 version: 0.0.1
 homepage: https://github.com/ikbendewilliam/flutter_figma_theme_generator
 
