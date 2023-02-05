@@ -11,7 +11,9 @@ extension StringExtension on String {
 
     for (var i = 0; i < text.length; i++) {
       final char = String.fromCharCode(text.codeUnitAt(i));
-      final nextChar = i + 1 == text.length ? null : String.fromCharCode(text.codeUnitAt(i + 1));
+      final nextChar = i + 1 == text.length
+          ? null
+          : String.fromCharCode(text.codeUnitAt(i + 1));
 
       if (_symbolRegex.hasMatch(char)) {
         continue;
@@ -19,7 +21,9 @@ extension StringExtension on String {
 
       sb.write(char);
 
-      final isEndOfWord = nextChar == null || (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) || _symbolRegex.hasMatch(nextChar);
+      final isEndOfWord = nextChar == null ||
+          (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) ||
+          _symbolRegex.hasMatch(nextChar);
 
       if (isEndOfWord) {
         words.add(sb.toString());
@@ -36,7 +40,8 @@ extension StringExtension on String {
 
   String get upperCamelCase => _words.map(_upperCaseFirstLetter).join();
 
-  String _getSnakeCase({String separator = '_'}) => _words.map((word) => word.toLowerCase()).toList().join(separator);
+  String _getSnakeCase({String separator = '_'}) =>
+      _words.map((word) => word.toLowerCase()).toList().join(separator);
 
   String _getCamelCase({String separator = ''}) {
     final words = _words.map(_upperCaseFirstLetter).toList();

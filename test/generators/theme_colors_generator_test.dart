@@ -7,7 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   void testColorGenerator(String input, String output) {
     final fontGenerator = ThemeColorsGenerator();
-    final result = fontGenerator.generate(jsonDecode(input.trim()) as Map<String, dynamic>, PubspecConfig(pubspecConfig), true);
+    final result = fontGenerator.generate(
+        jsonDecode(input.trim()) as Map<String, dynamic>,
+        PubspecConfig(pubspecConfig),
+        true);
     expect(result.files.entries.first.value, output);
   }
 

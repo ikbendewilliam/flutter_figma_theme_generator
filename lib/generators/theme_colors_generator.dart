@@ -6,7 +6,8 @@ class ThemeColorsGenerator {
   final _warnings = <String>[];
   var themeData = <String, dynamic>{};
 
-  GeneratedContent generate(Map<String, dynamic> schema, PubspecConfig pubspecConfig, bool isBase) {
+  GeneratedContent generate(
+      Map<String, dynamic> schema, PubspecConfig pubspecConfig, bool isBase) {
     _warnings.clear();
     final themeInstanceName = schema.keys.first;
     themeData = schema.values.first as Map<String, dynamic>;
@@ -15,46 +16,63 @@ class ThemeColorsGenerator {
 
     for (final entry in themeData.entries) {
       final json = entry.value as Map<String, dynamic>;
-      colors.addAll(_generateColors(entry.key, json, pubspecConfig.projectName.upperCamelCase));
+      colors.addAll(_generateColors(
+          entry.key, json, pubspecConfig.projectName.upperCamelCase));
     }
 
     String instanceName;
-    final defaultInstanceName = '${pubspecConfig.projectName.upperCamelCase}ColorsThemeDefault';
+    final defaultInstanceName =
+        '${pubspecConfig.projectName.upperCamelCase}ColorsThemeDefault';
     if (isBase) {
       instanceName = defaultInstanceName;
       var baseColorFile = '''import 'package:flutter/material.dart';\n\n''';
-      baseColorFile += '''import '${pubspecConfig.projectName.snakeCase}_colors.dart';\n\n''';
+      baseColorFile +=
+          '''import '${pubspecConfig.projectName.snakeCase}_colors.dart';\n\n''';
       baseColorFile += 'class $instanceName {\n';
-      baseColorFile += colors.entries.map((color) => '  final Color ${color.key};\n').join();
+      baseColorFile +=
+          colors.entries.map((color) => '  final Color ${color.key};\n').join();
       baseColorFile += '\n  $instanceName({\n';
-      baseColorFile += colors.entries.map((color) => '    Color? ${color.key},\n').join();
+      baseColorFile +=
+          colors.entries.map((color) => '    Color? ${color.key},\n').join();
       baseColorFile += '  })  : ';
-      baseColorFile += colors.entries.map((color) => '${color.key} = ${color.key} ?? ${color.value}').join(',\n        ');
+      baseColorFile += colors.entries
+          .map((color) => '${color.key} = ${color.key} ?? ${color.value}')
+          .join(',\n        ');
       baseColorFile += ';\n';
       baseColorFile += '}\n';
-      files['${pubspecConfig.projectName.snakeCase}_colors_theme_default'] = baseColorFile;
+      files['${pubspecConfig.projectName.snakeCase}_colors_theme_default'] =
+          baseColorFile;
     } else {
-      instanceName = '${pubspecConfig.projectName.upperCamelCase}ColorsTheme${themeInstanceName.upperCamelCase}';
-      var colorInstanceFile = '''import '${pubspecConfig.projectName.snakeCase}_colors.dart';\n''';
-      colorInstanceFile += '''import '${pubspecConfig.projectName.snakeCase}_colors_theme_default.dart';\n\n''';
+      instanceName =
+          '${pubspecConfig.projectName.upperCamelCase}ColorsTheme${themeInstanceName.upperCamelCase}';
+      var colorInstanceFile =
+          '''import '${pubspecConfig.projectName.snakeCase}_colors.dart';\n''';
+      colorInstanceFile +=
+          '''import '${pubspecConfig.projectName.snakeCase}_colors_theme_default.dart';\n\n''';
       colorInstanceFile += 'class $instanceName {\n';
       colorInstanceFile += '  $instanceName._();\n\n';
       colorInstanceFile += '  static final instance = $defaultInstanceName(\n';
-      colorInstanceFile += colors.entries.map((color) => '    ${color.key}: ${color.value},\n').join('');
+      colorInstanceFile += colors.entries
+          .map((color) => '    ${color.key}: ${color.value},\n')
+          .join('');
       colorInstanceFile += '  );\n}\n';
-      files['${pubspecConfig.projectName.snakeCase}_colors_theme_${themeInstanceName.snakeCase}'] = colorInstanceFile;
+      files['${pubspecConfig.projectName.snakeCase}_colors_theme_${themeInstanceName.snakeCase}'] =
+          colorInstanceFile;
     }
 
     return GeneratedContent(files, _warnings, instanceName);
   }
 
-  Map<String, String> _generateColors(String key, Map<String, dynamic> data, String projectNameUpperCamelCase) {
+  Map<String, String> _generateColors(
+      String key, Map<String, dynamic> data, String projectNameUpperCamelCase) {
     final colors = <String, String>{};
     for (final entry in data.entries) {
       if (entry.key == 'value' && entry.value is String && _isColor(data)) {
-        colors[key.camelCase] = _valueFromThemeColors(entry.value, projectNameUpperCamelCase);
+        colors[key.camelCase] =
+            _valueFromThemeColors(entry.value, projectNameUpperCamelCase);
       } else if (entry.value is Map<String, dynamic>) {
-        colors.addAll(_generateColors('${key}_${entry.key}'.camelCase, entry.value as Map<String, dynamic>, projectNameUpperCamelCase));
+        colors.addAll(_generateColors('${key}_${entry.key}'.camelCase,
+            entry.value as Map<String, dynamic>, projectNameUpperCamelCase));
       }
     }
     return colors;
@@ -85,5 +103,7 @@ class ThemeColorsGenerator {
     }
   }
 
-  bool _isColor(dynamic data) => data is Map<String, dynamic> && data['type'] == 'color'; // For now only colors are supported
+  bool _isColor(dynamic data) =>
+      data is Map<String, dynamic> &&
+      data['type'] == 'color'; // For now only colors are supported
 }

@@ -9,10 +9,12 @@ class ColorGenerator extends BaseGenerator {
   final _warnings = <String>[];
 
   @override
-  bool matchesSchema(Map<String, dynamic> schema) => schema['Colour palette'] != null;
+  bool matchesSchema(Map<String, dynamic> schema) =>
+      schema['Colour palette'] != null;
 
   @override
-  GeneratedContent generate(Map<String, dynamic> schema, PubspecConfig pubspecConfig) {
+  GeneratedContent generate(
+      Map<String, dynamic> schema, PubspecConfig pubspecConfig) {
     _warnings.clear();
     final colorPalette = schema['Colour palette'] as Map<String, dynamic>;
     final colors = <String, String>{};
@@ -25,7 +27,10 @@ class ColorGenerator extends BaseGenerator {
 
     var colorFile = '''import 'package:flutter/material.dart';\n\n''';
     colorFile += 'class ${pubspecConfig.projectName.upperCamelCase}Colors {\n';
-    colorFile += colors.entries.map((color) => '  static const ${color.key} = Color(${color.value});\n').join();
+    colorFile += colors.entries
+        .map(
+            (color) => '  static const ${color.key} = Color(${color.value});\n')
+        .join();
     colorFile += '}\n';
 
     files['${pubspecConfig.projectName.snakeCase}_colors'] = colorFile;
@@ -35,7 +40,11 @@ class ColorGenerator extends BaseGenerator {
 
   String _generateColor(String data, Map<String, dynamic> colorPalette) {
     if (data.startsWith('hsla(')) {
-      final hsla = data.substring(5, data.length - 1).split(',').map((e) => e.trim()).toList();
+      final hsla = data
+          .substring(5, data.length - 1)
+          .split(',')
+          .map((e) => e.trim())
+          .toList();
       return hslToHex(
         _valueOrFromColorPalette(hsla[0], colorPalette),
         _valueOrFromColorPalette(hsla[1], colorPalette),
@@ -48,25 +57,31 @@ class ColorGenerator extends BaseGenerator {
     return '0xFF000000';
   }
 
-  Map<String, String> _generateColors(String key, Map<String, dynamic> data, Map<String, dynamic> colorPalette) {
+  Map<String, String> _generateColors(String key, Map<String, dynamic> data,
+      Map<String, dynamic> colorPalette) {
     final colors = <String, String>{};
     for (final entry in data.entries) {
       if (entry.key == 'value' && entry.value is String && _isColor(data)) {
         colors[key.camelCase] = _generateColor(entry.value, colorPalette);
-      } else if (!_isColorConfig(entry.key) && entry.value is Map<String, dynamic>) {
-        colors.addAll(_generateColors('${key}_${entry.key}'.camelCase, entry.value as Map<String, dynamic>, colorPalette));
+      } else if (!_isColorConfig(entry.key) &&
+          entry.value is Map<String, dynamic>) {
+        colors.addAll(_generateColors('${key}_${entry.key}'.camelCase,
+            entry.value as Map<String, dynamic>, colorPalette));
       }
     }
     return colors;
   }
 
-  double _valueOrFromColorPalette(String data, Map<String, dynamic> colorPalette) {
+  double _valueOrFromColorPalette(
+      String data, Map<String, dynamic> colorPalette) {
     String? amount;
     if (data.startsWith('{') && data.endsWith('}')) {
       final colorPaletteKeys = data.substring(1, data.length - 1).split('.');
       final value = colorPaletteKeys.fold(colorPalette, (value, e) => value[e]);
       amount = value['value'] as String?;
-      if (amount != null && amount.startsWith('{') && amount.endsWith('}')) return _valueOrFromColorPalette(amount, colorPalette);
+      if (amount != null && amount.startsWith('{') && amount.endsWith('}')) {
+        return _valueOrFromColorPalette(amount, colorPalette);
+      }
     }
     amount ??= data;
     if (amount.endsWith('%')) {
@@ -85,13 +100,19 @@ class ColorGenerator extends BaseGenerator {
     return '0x${'$alpha$red$green$blue'.toUpperCase()}';
   }
 
-  String calucalateHex(int n, double hue, double saturation, double light, double a) {
+  String calucalateHex(
+      int n, double hue, double saturation, double light, double a) {
     final k = (n + hue / 30) % 12;
     final color = light - a * max(min(k - 3, min(9 - k, 1)), -1);
-    return (255 * color).round().toRadixString(16).padLeft(2, '0'); // convert to Hex and prefix "0" if needed
+    return (255 * color)
+        .round()
+        .toRadixString(16)
+        .padLeft(2, '0'); // convert to Hex and prefix "0" if needed
   }
 
-  bool _isColorConfig(dynamic data) => data is Map<String, dynamic> && data['type'] == 'Color-config';
+  bool _isColorConfig(dynamic data) =>
+      data is Map<String, dynamic> && data['type'] == 'Color-config';
 
-  bool _isColor(dynamic data) => data is Map<String, dynamic> && data['type'] == 'color';
+  bool _isColor(dynamic data) =>
+      data is Map<String, dynamic> && data['type'] == 'color';
 }

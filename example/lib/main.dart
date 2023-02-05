@@ -1,8 +1,21 @@
+import 'package:example/styles/example_text_theme.dart';
 import 'package:example/styles/example_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  _setTextThemeBuilder();
   runApp(const MyApp());
+}
+
+void _setTextThemeBuilder() {
+  ExampleTheme.textThemeBuilder = (colors) => ExampleTextTheme(
+        allOverrides: TextStyle(
+          color: colors.uIContentTextDefault,
+        ),
+        textRegularMediumOverrides: TextStyle(
+          color: colors.uIContentTextSubtle,
+        ),
+      );
 }
 
 class MyApp extends StatefulWidget {
@@ -55,50 +68,69 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text(
               'You have pushed the button this many times:',
-              style: theme.textStyles.titleMedium.copyWith(color: theme.colors.uIContentTextDefault),
+              style: theme.textStyles.titleMedium,
               textAlign: TextAlign.center,
             ),
             Text(
               '$_counter',
-              style: theme.textStyles.titleExtraLarge.copyWith(color: theme.colors.uIContentTextSubtle),
+              style: theme.textStyles.titleExtraLarge
+                  .copyWith(color: theme.colors.uIContentTextSubtle),
             ),
             const SizedBox(height: 32),
             MaterialButton(
               onPressed: () {
                 setState(() {
-                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeRedModeType;
+                  ExampleTheme.userPrefferedThemeType =
+                      ThemeType.exampleColorsThemeRedModeType;
                 });
               },
-              color: ExampleTheme.of(context, forceRedMode: true).colors.uIBgScreen,
+              color: ExampleTheme.of(context, forceRedMode: true)
+                  .colors
+                  .uIBgScreen,
               child: Text(
                 'Set Red Mode',
-                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceRedMode: true).colors.uIContentTextDefault),
+                style: theme.textStyles.textRegularMedium.copyWith(
+                    color: ExampleTheme.of(context, forceRedMode: true)
+                        .colors
+                        .uIContentTextDefault),
               ),
             ),
             const SizedBox(height: 32),
             MaterialButton(
               onPressed: () {
                 setState(() {
-                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeLightModeType;
+                  ExampleTheme.userPrefferedThemeType =
+                      ThemeType.exampleColorsThemeLightModeType;
                 });
               },
-              color: ExampleTheme.of(context, forceLightMode: true).colors.uIBgScreen,
+              color: ExampleTheme.of(context, forceLightMode: true)
+                  .colors
+                  .uIBgScreen,
               child: Text(
                 'Set Light Mode',
-                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceLightMode: true).colors.uIContentTextDefault),
+                style: theme.textStyles.textRegularMedium.copyWith(
+                    color: ExampleTheme.of(context, forceLightMode: true)
+                        .colors
+                        .uIContentTextDefault),
               ),
             ),
             const SizedBox(height: 32),
             MaterialButton(
               onPressed: () {
                 setState(() {
-                  ExampleTheme.userPrefferedThemeType = ThemeType.exampleColorsThemeDefaultType;
+                  ExampleTheme.userPrefferedThemeType =
+                      ThemeType.exampleColorsThemeDefaultType;
                 });
               },
-              color: ExampleTheme.of(context, forceDefault: true).colors.uIBgScreen,
+              color: ExampleTheme.of(context, forceDefault: true)
+                  .colors
+                  .uIBgScreen,
               child: Text(
                 'Set Default Mode',
-                style: theme.textStyles.textRegularMedium.copyWith(color: ExampleTheme.of(context, forceDefault: true).colors.uIContentTextDefault),
+                style: theme.textStyles.textRegularMedium.copyWith(
+                    color: ExampleTheme.of(context, forceDefault: true)
+                        .colors
+                        .uIContentTextDefault),
               ),
             ),
             const SizedBox(height: 32),

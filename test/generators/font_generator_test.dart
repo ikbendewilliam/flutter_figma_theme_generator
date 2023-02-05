@@ -7,7 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   void testFontGenerator(String input, String output) {
     final fontGenerator = FontGenerator();
-    final result = fontGenerator.generate(jsonDecode(input.trim()) as Map<String, dynamic>, PubspecConfig(pubspecConfig));
+    final result = fontGenerator.generate(
+        jsonDecode(input.trim()) as Map<String, dynamic>,
+        PubspecConfig(pubspecConfig));
     expect(result.files.entries.first.value, output);
   }
 

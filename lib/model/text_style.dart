@@ -231,4 +231,29 @@ class TextStyle {
   String toString() {
     return 'TextStyle(inherit: $inherit, color: $color, backgroundColor: $backgroundColor, fontFamily: ${fontFamily is String ? '"$fontFamily"' : fontFamily}, fontSize: $fontSize, fontWeight: $fontWeight, fontStyle: $fontStyle, letterSpacing: $letterSpacing, wordSpacing: $wordSpacing, textBaseline: $textBaseline, height: $height, decoration: $decoration, decorationColor: $decorationColor, decorationStyle: $decorationStyle, decorationThickness: $decorationThickness, debugLabel: $debugLabel, shadows: $shadows, fontFeatures: $fontFeatures, fontVariations: $fontVariations, overflow: $overflow)';
   }
+
+  String stringWithOverrides(String overrideName) {
+    return '''TextStyle(
+      inherit: $overrideName?.inherit ?? allOverrides?.inherit ?? $inherit,
+      color: $overrideName?.color ?? allOverrides?.color${color == null ? '' : ' ?? $color'},
+      backgroundColor: $overrideName?.backgroundColor ?? allOverrides?.backgroundColor${backgroundColor == null ? '' : ' ?? $backgroundColor'},
+      fontFamily: $overrideName?.fontFamily ?? allOverrides?.fontFamily${fontFamily == null ? '' : ' ?? ${fontFamily is String ? '"$fontFamily"' : fontFamily}'},
+      fontSize: $overrideName?.fontSize ?? allOverrides?.fontSize${fontSize == null ? '' : ' ?? $fontSize'},
+      fontWeight: $overrideName?.fontWeight ?? allOverrides?.fontWeight${fontWeight == null ? '' : ' ?? $fontWeight'},
+      fontStyle: $overrideName?.fontStyle ?? allOverrides?.fontStyle${fontStyle == null ? '' : ' ?? $fontStyle'},
+      letterSpacing: $overrideName?.letterSpacing ?? allOverrides?.letterSpacing${letterSpacing == null ? '' : ' ?? $letterSpacing'},
+      wordSpacing: $overrideName?.wordSpacing ?? allOverrides?.wordSpacing${wordSpacing == null ? '' : ' ?? $wordSpacing'},
+      textBaseline: $overrideName?.textBaseline ?? allOverrides?.textBaseline${textBaseline == null ? '' : ' ?? $textBaseline'},
+      height: $overrideName?.height ?? allOverrides?.height${height == null ? '' : ' ?? $height'},
+      decoration: $overrideName?.decoration ?? allOverrides?.decoration${decoration == null ? '' : ' ?? $decoration'},
+      decorationColor: $overrideName?.decorationColor ?? allOverrides?.decorationColor${decorationColor == null ? '' : ' ?? $decorationColor'},
+      decorationStyle: $overrideName?.decorationStyle ?? allOverrides?.decorationStyle${decorationStyle == null ? '' : ' ?? $decorationStyle'},
+      decorationThickness: $overrideName?.decorationThickness ?? allOverrides?.decorationThickness${decorationThickness == null ? '' : ' ?? $decorationThickness'},
+      debugLabel: $overrideName?.debugLabel ?? allOverrides?.debugLabel${debugLabel == null ? '' : ' ?? $debugLabel'},
+      shadows: $overrideName?.shadows ?? allOverrides?.shadows${shadows == null ? '' : ' ?? $shadows'},
+      fontFeatures: $overrideName?.fontFeatures ?? allOverrides?.fontFeatures${fontFeatures == null ? '' : ' ?? $fontFeatures'},
+      fontVariations: $overrideName?.fontVariations ?? allOverrides?.fontVariations${fontVariations == null ? '' : ' ?? $fontVariations'},
+      overflow: $overrideName?.overflow ?? allOverrides?.overflow${overflow == null ? '' : ' ?? $overflow'},
+    )''';
+  }
 }

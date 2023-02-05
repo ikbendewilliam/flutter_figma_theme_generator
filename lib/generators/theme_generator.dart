@@ -7,7 +7,8 @@ import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 class ThemeGenerator {
   static bool _generatedBase = false;
 
-  static GeneratedContent generateTheme(Map<String, dynamic> json, String themeFileName, PubspecConfig pubspecConfig) {
+  static GeneratedContent generateTheme(Map<String, dynamic> json,
+      String themeFileName, PubspecConfig pubspecConfig) {
     final generators = [
       FontGenerator(),
       ColorGenerator(),
@@ -30,5 +31,6 @@ class ThemeGenerator {
 abstract class BaseGenerator {
   bool matchesSchema(Map<String, dynamic> schema);
 
-  GeneratedContent generate(Map<String, dynamic> schema, PubspecConfig pubspecConfig);
+  GeneratedContent generate(
+      Map<String, dynamic> schema, PubspecConfig pubspecConfig);
 }
