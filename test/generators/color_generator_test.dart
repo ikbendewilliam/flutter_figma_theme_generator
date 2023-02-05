@@ -60,8 +60,8 @@ const input = '''
 
 const output = '''import 'package:flutter/material.dart';
 
-class TestColorTheme {
-  static const neutralsGrey0 = Color("#FF292929");
+class TestColors {
+  static const neutralsGrey0 = Color(0xFF292929);
 }
 ''';
 

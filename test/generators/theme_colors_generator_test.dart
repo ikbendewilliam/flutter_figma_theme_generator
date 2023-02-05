@@ -112,30 +112,64 @@ const input = '''
 }
 ''';
 
-const output = '''import 'test_colors.dart';
-import 'test_color_theme_default.dart';
+const output = '''import 'package:flutter/material.dart';
 
-class TestColorThemeDarkMode extends TestColorsThemeDefault {
-  TestColorThemeDarkMode()
-      : super(
-          uIBgSplash: TestColors.neutralsBlue24,
-          uIBgCanvas: TestColors.neutralsBlue0,
-          uIBgSurface1: TestColors.neutralsBlue8,
-          uIBgCanvasBlock: TestColors.neutralsBlue8.withOpacity(0.64),
-          uIBgOnimgBlurred: TestColors.neutralsBlue0.withOpacity(0.72),
-          uIContentTextDefault: TestColors.neutralsBlue96,
-          uIContentTextSubtle: TestColors.neutralsBlue56,
-          uIContentTextFaded: TestColors.neutralsBlue40,
-          uIContentTextSelected: TestColors.brandC156,
-          uIContentSplashDefault: TestColors.brandC156,
-          uIContentSplashFaded: TestColors.neutralsBlue24,
-          uIActionDefault: TestColors.brandC156,
-          uIActionOndefault: TestColors.brandC10,
-          uIActionSubtle: TestColors.neutralsBlue48,
-          uIActionDanger: TestColors.systemSemN56,
-          uIBorderOnCanvas: TestColors.neutralsBlue16,
-          uIDividerOnCanvas: TestColors.neutralsBlue16,
-        );
+import 'test_colors.dart';
+
+class TestColorsThemeDefault {
+  final Color uIBgSplash;
+  final Color uIBgCanvas;
+  final Color uIBgSurface1;
+  final Color uIBgCanvasBlock;
+  final Color uIBgOnimgBlurred;
+  final Color uIContentTextDefault;
+  final Color uIContentTextSubtle;
+  final Color uIContentTextFaded;
+  final Color uIContentTextSelected;
+  final Color uIContentSplashDefault;
+  final Color uIContentSplashFaded;
+  final Color uIActionDefault;
+  final Color uIActionOndefault;
+  final Color uIActionSubtle;
+  final Color uIActionDanger;
+  final Color uIBorderOnCanvas;
+  final Color uIDividerOnCanvas;
+
+  TestColorsThemeDefault({
+    Color? uIBgSplash,
+    Color? uIBgCanvas,
+    Color? uIBgSurface1,
+    Color? uIBgCanvasBlock,
+    Color? uIBgOnimgBlurred,
+    Color? uIContentTextDefault,
+    Color? uIContentTextSubtle,
+    Color? uIContentTextFaded,
+    Color? uIContentTextSelected,
+    Color? uIContentSplashDefault,
+    Color? uIContentSplashFaded,
+    Color? uIActionDefault,
+    Color? uIActionOndefault,
+    Color? uIActionSubtle,
+    Color? uIActionDanger,
+    Color? uIBorderOnCanvas,
+    Color? uIDividerOnCanvas,
+  })  : uIBgSplash = uIBgSplash ?? TestColors.neutralsBlue24,
+        uIBgCanvas = uIBgCanvas ?? TestColors.neutralsBlue0,
+        uIBgSurface1 = uIBgSurface1 ?? TestColors.neutralsBlue8,
+        uIBgCanvasBlock = uIBgCanvasBlock ?? TestColors.neutralsBlue8.withOpacity(0.64),
+        uIBgOnimgBlurred = uIBgOnimgBlurred ?? TestColors.neutralsBlue0.withOpacity(0.72),
+        uIContentTextDefault = uIContentTextDefault ?? TestColors.neutralsBlue96,
+        uIContentTextSubtle = uIContentTextSubtle ?? TestColors.neutralsBlue56,
+        uIContentTextFaded = uIContentTextFaded ?? TestColors.neutralsBlue40,
+        uIContentTextSelected = uIContentTextSelected ?? TestColors.brandC156,
+        uIContentSplashDefault = uIContentSplashDefault ?? TestColors.brandC156,
+        uIContentSplashFaded = uIContentSplashFaded ?? TestColors.neutralsBlue24,
+        uIActionDefault = uIActionDefault ?? TestColors.brandC156,
+        uIActionOndefault = uIActionOndefault ?? TestColors.brandC10,
+        uIActionSubtle = uIActionSubtle ?? TestColors.neutralsBlue48,
+        uIActionDanger = uIActionDanger ?? TestColors.systemSemN56,
+        uIBorderOnCanvas = uIBorderOnCanvas ?? TestColors.neutralsBlue16,
+        uIDividerOnCanvas = uIDividerOnCanvas ?? TestColors.neutralsBlue16;
 }
 ''';
 
