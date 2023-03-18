@@ -1,4 +1,6 @@
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
+import 'package:flutter_figma_theme_generator/generators/color_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/font_generator.dart';
 import 'package:flutter_figma_theme_generator/generators/theme_colors_generator.dart';
 import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/resolvers/base_resolver.dart';
@@ -9,15 +11,17 @@ class ThemeGenerator {
   static bool _generatedBase = false;
 
   static GeneratedContent generateTheme(Map<String, dynamic> json, String themeFileName, PubspecConfig pubspecConfig) {
-    final resolvers = <BaseResolver>[
-      TypographyResolver(),
-      ColorResolver(),
-    ];
-    for (final resolver in resolvers) {
-      final data = resolver.resolve(json, pubspecConfig);
+    var allContent = GeneratedContent({}, [], null);
+    final resolverMap = <BaseResolver, BaseGenerator>{
+      TypographyResolver(): FontGenerator(),
+      ColorResolver(): ColorGenerator(),
+    };
+    for (final entry in resolverMap.entries) {
+      final data = entry.key.resolve(json, pubspecConfig);
       if (data.isEmpty) continue;
-      // return generator.generate(json, pubspecConfig);
+      allContent += entry.value.generate(data, pubspecConfig);
     }
+    if (allContent.files.isNotEmpty) return allContent;
     final content = ThemeColorsGenerator().generate(
       json,
       pubspecConfig,

@@ -6,19 +6,10 @@ import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 
 class FontGenerator extends BaseGenerator {
   @override
-  bool matchesSchema(Map<String, dynamic> schema) => schema['Typography'] != null;
-
-  @override
-  GeneratedContent generate(Map<String, dynamic> schema, PubspecConfig pubspecConfig) {
-    final typography = schema['Typography'] as Map<String, dynamic>;
-    final textStyles = <String, TextStyle>{};
+  GeneratedContent generate(Map<String, dynamic> data, PubspecConfig pubspecConfig) {
+    final textStyles = data.cast<String, TextStyle>();
     final files = <String, String>{};
 
-    for (final entry in typography.entries) {
-      if (_isNotFont(entry.key)) continue;
-      final json = entry.value as Map<String, dynamic>;
-      textStyles.addAll(_generateTextStyles(entry.key, json, typography));
-    }
     final fontFamilies = textStyles.entries.map((e) => e.value.fontFamily).toSet()..removeWhere(pubspecConfig.fonts.contains);
     final warnings = fontFamilies.map((fontFamily) => 'Warning: Font family "$fontFamily" is not defined in pubspec.yaml').toList();
 

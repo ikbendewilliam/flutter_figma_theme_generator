@@ -4,7 +4,7 @@ import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 
 class CurrentThemeGenerator {
   static GeneratedContent generateTheme(Iterable<String> generatedInstances, PubspecConfig pubspecConfig) {
-    final defaultTheme = generatedInstances.first;
+    final defaultTheme = generatedInstances.isEmpty ? 'null' : generatedInstances.first;
     final otherThemes = generatedInstances.skip(1);
     final hasFontTheme = generatedInstances.any((e) => e.contains('TextTheme'));
     final themeName = '${pubspecConfig.projectName.upperCamelCase}Theme';

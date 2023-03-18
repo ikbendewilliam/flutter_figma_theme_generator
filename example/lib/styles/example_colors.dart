@@ -41,8 +41,6 @@ class ExampleColors {
   static const brandColoursNeutrals88 = Color(0xFFECEDEF);
   static const brandColoursNeutrals96 = Color(0xFFF7F7F8);
   static const brandColoursNeutrals100 = Color(0xFFFFFFFF);
-  static const brandColoursGradientsLR = Color(0xFF000000);
-  static const brandColoursGradientsTB = Color(0xFF000000);
   static const functionalColoursSysNeg0 = Color(0xFF260202);
   static const functionalColoursSysNeg8 = Color(0xFF4D0505);
   static const functionalColoursSysNeg16 = Color(0xFF730707);

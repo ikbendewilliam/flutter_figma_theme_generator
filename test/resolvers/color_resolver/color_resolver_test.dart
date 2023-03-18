@@ -26,4 +26,19 @@ void main() {
       expect(jsonEncode(result), expected);
     });
   }
+
+  group('Color generator', () {
+    test('HSL to HEX test', () {
+      final generator = ColorResolver();
+      expect(generator.hslToHex(0, 0, 0, 1), '0xFF000000');
+      expect(generator.hslToHex(0, 100, 100, 1), '0xFFFFFFFF');
+      expect(generator.hslToHex(0, 100, 50, 1), '0xFFFF0000');
+      expect(generator.hslToHex(120, 100, 50, 1), '0xFF00FF00');
+      expect(generator.hslToHex(240, 100, 50, 1), '0xFF0000FF');
+      expect(generator.hslToHex(0, 0, 50, 1), '0xFF808080');
+      expect(generator.hslToHex(30, 30, 30, 1), '0xFF634D36');
+      expect(generator.hslToHex(0, 0, 0, 0), '0x00000000');
+      expect(generator.hslToHex(0, 0, 0, 0.5), '0x80000000');
+    });
+  });
 }
