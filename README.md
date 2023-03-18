@@ -1,3 +1,15 @@
+## Assumptions
+
+There are quite a few different ways to create the tokens file. This package assumes the following:
+- You have typography containing text styles
+- You have colors containing color styles
+- You have a theme containing the colors and typography
+- The colors use a hsla format
+- The theme colors reference the colors
+
+
+# TODO BELOW
+
 ## Usage
 
 1. Add a dev_dependency to your pubspec.yaml

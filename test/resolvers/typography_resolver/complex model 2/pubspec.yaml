@@ -1,0 +1,4 @@
+name: example
+
+flutter_figma_theme_generator:
+  typography_key: Typography iOS

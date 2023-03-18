@@ -3,40 +3,28 @@ import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 
 class CurrentThemeGenerator {
-  static GeneratedContent generateTheme(Iterable<String> generatedInstances,
-      PubspecConfig pubspecConfig, bool hasFontTheme) {
+  static GeneratedContent generateTheme(Iterable<String> generatedInstances, PubspecConfig pubspecConfig) {
     final defaultTheme = generatedInstances.first;
     final otherThemes = generatedInstances.skip(1);
+    final hasFontTheme = generatedInstances.any((e) => e.contains('TextTheme'));
     final themeName = '${pubspecConfig.projectName.upperCamelCase}Theme';
-    final fontTheme = hasFontTheme
-        ? '${pubspecConfig.projectName.upperCamelCase}TextTheme'
-        : null;
-    final projectNameLength = pubspecConfig.projectName.upperCamelCase
-        .length; // Convert to camel case to not have _ in the name
+    final fontTheme = hasFontTheme ? '${pubspecConfig.projectName.upperCamelCase}TextTheme' : null;
+    final projectNameLength = pubspecConfig.projectName.upperCamelCase.length; // Convert to camel case to not have _ in the name
     final themeStartLength = projectNameLength + 'ColorsTheme'.length;
     var defaultLight = pubspecConfig.defaultLight?.camelCase;
-    if (defaultLight != null &&
-        !generatedInstances.contains(defaultLight.upperCamelCase)) {
+    if (defaultLight != null && !generatedInstances.contains(defaultLight.upperCamelCase)) {
       defaultLight = null;
     }
-    defaultLight ??=
-        pubspecConfig.defaultThemeIsDarkMode && otherThemes.isNotEmpty
-            ? otherThemes.first.camelCase
-            : defaultTheme.camelCase;
+    defaultLight ??= pubspecConfig.defaultThemeIsDarkMode && otherThemes.isNotEmpty ? otherThemes.first.camelCase : defaultTheme.camelCase;
     var defaultDark = pubspecConfig.defaultDark?.camelCase;
-    if (defaultDark != null &&
-        !generatedInstances.contains(defaultDark.upperCamelCase)) {
+    if (defaultDark != null && !generatedInstances.contains(defaultDark.upperCamelCase)) {
       defaultDark = null;
     }
-    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode || otherThemes.isEmpty
-        ? defaultTheme.camelCase
-        : otherThemes.first.camelCase;
+    defaultDark ??= pubspecConfig.defaultThemeIsDarkMode || otherThemes.isEmpty ? defaultTheme.camelCase : otherThemes.first.camelCase;
     const enumName = 'ThemeType';
 
     var themeFile = 'import \'package:flutter/material.dart\';\n\n';
-    themeFile += generatedInstances
-        .map((e) => 'import \'${e.snakeCase}.dart\';\n')
-        .join();
+    themeFile += generatedInstances.map((e) => 'import \'${e.snakeCase}.dart\';\n').join();
     if (fontTheme != null) {
       themeFile += 'import \'${fontTheme.snakeCase}.dart\';\n';
     }
@@ -50,23 +38,16 @@ class CurrentThemeGenerator {
     themeFile += '  /// Set to add logic in the creation of your themes.\n';
     themeFile += '  /// This can be used to override default colors for\n';
     themeFile += '  /// all or specific textStyles\n';
-    themeFile +=
-        '  static ${fontTheme ?? 'dynamic'} Function(${defaultTheme.upperCamelCase} colors)? textThemeBuilder;\n';
+    themeFile += '  static ${fontTheme ?? 'dynamic'} Function(${defaultTheme.upperCamelCase} colors)? textThemeBuilder;\n';
     themeFile += '\n';
     if (generatedInstances.length > 1) {
       themeFile += '  static final _themeTypeMap = <$enumName, $themeName>{\n';
-      themeFile += generatedInstances
-          .map((e) => '    $enumName.${e.camelCase}Type: _${e.camelCase},\n')
-          .join();
+      themeFile += generatedInstances.map((e) => '    $enumName.${e.camelCase}Type: _${e.camelCase},\n').join();
       themeFile += '  };\n';
       themeFile += '\n';
     }
-    themeFile +=
-        '  static final _${defaultTheme.camelCase} = _create$themeName(${defaultTheme.upperCamelCase}());\n';
-    themeFile += otherThemes
-        .map((e) =>
-            '  static final _${e.camelCase} = _create$themeName(${e.upperCamelCase}.instance);\n')
-        .join();
+    themeFile += '  static final _${defaultTheme.camelCase} = _create$themeName(${defaultTheme.upperCamelCase}());\n';
+    themeFile += otherThemes.map((e) => '  static final _${e.camelCase} = _create$themeName(${e.upperCamelCase}.instance);\n').join();
     themeFile += '\n';
     themeFile += '  final ${defaultTheme.upperCamelCase} colors;\n';
     if (fontTheme != null) {
@@ -77,11 +58,9 @@ class CurrentThemeGenerator {
     if (fontTheme != null) themeFile += ', this.textStyles';
     themeFile += ');\n';
     themeFile += '\n';
-    themeFile +=
-        '  static $themeName _create$themeName(${defaultTheme.upperCamelCase} colors) {\n';
+    themeFile += '  static $themeName _create$themeName(${defaultTheme.upperCamelCase} colors) {\n';
     if (fontTheme != null) {
-      themeFile +=
-          '    final textStyles = textThemeBuilder?.call(colors) ?? $fontTheme();\n';
+      themeFile += '    final textStyles = textThemeBuilder?.call(colors) ?? $fontTheme();\n';
     }
     themeFile += '    return $themeName(colors';
     if (fontTheme != null) {
@@ -98,29 +77,19 @@ class CurrentThemeGenerator {
     } else {
       themeFile += '\n';
       themeFile += '    BuildContext context, {\n';
-      themeFile += generatedInstances
-          .map((e) =>
-              '    bool force${e.substring(themeStartLength).upperCamelCase} = false,\n')
-          .join();
+      themeFile += generatedInstances.map((e) => '    bool force${e.substring(themeStartLength).upperCamelCase} = false,\n').join();
       themeFile += '  }) {\n';
-      themeFile += generatedInstances
-          .map((e) =>
-              '    if (force${e.substring(themeStartLength).upperCamelCase}) return _${e.camelCase};\n')
-          .join();
-      themeFile +=
-          '    if (userPrefferedThemeType != null) return _themeTypeMap[userPrefferedThemeType!]!;\n';
+      themeFile += generatedInstances.map((e) => '    if (force${e.substring(themeStartLength).upperCamelCase}) return _${e.camelCase};\n').join();
+      themeFile += '    if (userPrefferedThemeType != null) return _themeTypeMap[userPrefferedThemeType!]!;\n';
       themeFile += '\n';
-      themeFile +=
-          '    final brightness = MediaQuery.of(context).platformBrightness;\n';
-      themeFile +=
-          '    if (brightness == Brightness.dark) return _$defaultDark;\n';
+      themeFile += '    final brightness = MediaQuery.of(context).platformBrightness;\n';
+      themeFile += '    if (brightness == Brightness.dark) return _$defaultDark;\n';
       themeFile += '    return _$defaultLight;\n';
       themeFile += '  }\n';
       themeFile += '}\n';
       themeFile += '\n';
       themeFile += 'enum $enumName {\n';
-      themeFile +=
-          generatedInstances.map((e) => '  ${e.camelCase}Type,\n').join();
+      themeFile += generatedInstances.map((e) => '  ${e.camelCase}Type,\n').join();
       themeFile += '}\n';
     }
     return GeneratedContent({

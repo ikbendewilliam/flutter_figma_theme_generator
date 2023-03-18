@@ -5,6 +5,8 @@ class PubspecConfig {
 
   late final String projectName;
   late final String configPath;
+  late final String? colourPaletteKey;
+  late final String? typographyKey;
   late final String? defaultTheme;
   late final String? defaultLight;
   late final String? defaultDark;
@@ -18,17 +20,15 @@ class PubspecConfig {
     }
     final projectName = doc['name'];
     if (projectName == null || projectName.isEmpty) {
-      throw Exception(
-          'Could not parse the pubspec.yaml, project name not found');
+      throw Exception('Could not parse the pubspec.yaml, project name not found');
     }
-    fonts.addAll(doc['flutter']?['fonts']
-            ?.map<String>((e) => e['family'].toString())
-            .toList() ??
-        []);
+    fonts.addAll(doc['flutter']?['fonts']?.map<String>((e) => e['family'].toString()).toList() ?? []);
 
     this.projectName = projectName;
     final config = doc['flutter_figma_theme_generator'];
     configPath = config?['config_path'] ?? _defaultConfigPath;
+    colourPaletteKey = config?['colour_palette_key'];
+    typographyKey = config?['typography_key'];
     defaultTheme = config?['default_theme'];
     defaultLight = config?['default_light'];
     defaultDark = config?['default_dark'];

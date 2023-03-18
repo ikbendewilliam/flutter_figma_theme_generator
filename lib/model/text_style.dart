@@ -227,6 +227,29 @@ class TextStyle {
   /// How visual text overflow should be handled.
   final String? overflow;
 
+  Map<String, dynamic> toJson() => {
+        'inherit': inherit,
+        'color': color,
+        'backgroundColor': backgroundColor,
+        'fontFamily': fontFamily,
+        'fontSize': fontSize,
+        'fontWeight': fontWeight,
+        'fontStyle': fontStyle,
+        'letterSpacing': letterSpacing,
+        'wordSpacing': wordSpacing,
+        'textBaseline': textBaseline,
+        'height': height,
+        'decoration': decoration,
+        'decorationColor': decorationColor,
+        'decorationStyle': decorationStyle,
+        'decorationThickness': decorationThickness,
+        'debugLabel': debugLabel,
+        'shadows': shadows,
+        'fontFeatures': fontFeatures,
+        'fontVariations': fontVariations,
+        'overflow': overflow,
+      };
+
   @override
   String toString() {
     return 'TextStyle(inherit: $inherit, color: $color, backgroundColor: $backgroundColor, fontFamily: ${fontFamily is String ? '"$fontFamily"' : fontFamily}, fontSize: $fontSize, fontWeight: $fontWeight, fontStyle: $fontStyle, letterSpacing: $letterSpacing, wordSpacing: $wordSpacing, textBaseline: $textBaseline, height: $height, decoration: $decoration, decorationColor: $decorationColor, decorationStyle: $decorationStyle, decorationThickness: $decorationThickness, debugLabel: $debugLabel, shadows: $shadows, fontFeatures: $fontFeatures, fontVariations: $fontVariations, overflow: $overflow)';
