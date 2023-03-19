@@ -17,9 +17,9 @@ void main() {
       final expected = File('${testDir.path}/expected.dart').readAsStringSync();
       final pubspecContent = File('${testDir.path}/pubspec.yaml').readAsStringSync();
 
-      final data = Map<String, String>.from(jsonDecode(input));
+      final data = Map<String, Map<String, dynamic>>.from(jsonDecode(input));
       final pubspecConfig = PubspecConfig(pubspecContent);
-      final result = generator.generate(data, pubspecConfig, testDir.path.split('/').last, true);
+      final result = generator.generate(data, pubspecConfig);
       final resultContent = result.files.entries.first.value;
       final resultFile = File('${testDir.path}/result.dart')..createSync();
       resultFile.writeAsStringSync(resultContent);

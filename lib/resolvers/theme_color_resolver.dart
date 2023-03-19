@@ -1,44 +1,59 @@
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
+import 'package:flutter_figma_theme_generator/resolvers/base_resolver.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 
-class ThemeColorResolver {
+class ThemeColorResolver extends BaseResolver {
   bool _isColor(Map<String, dynamic> data) => data['type'] == 'color' && data['value'] is String && !(data['value'] as String).startsWith('hsla(');
 
-  bool _isThemeColor(String key, PubspecConfig pubspecConfig) => [
-        pubspecConfig.defaultTheme,
-        pubspecConfig.defaultLight,
-        pubspecConfig.defaultDark,
+  bool _isThemeColor(String key, PubspecConfig pubspecConfig) => ![
+        pubspecConfig.colourPaletteKey,
+        pubspecConfig.typographyKey,
       ].contains(key);
 
   var themeData = <String, dynamic>{};
 
-  Map<String, String> resolve(
+  @override
+  Map<String, Map<String, String>> resolve(
     Map<String, dynamic> data,
     PubspecConfig pubspecConfig, {
     String keys = '',
     Map<String, dynamic> allData = const {},
-    isRoot = true,
+  }) {
+    final result = <String, Map<String, String>>{};
+    for (final entry in data.entries.where((entry) => _isThemeColor(entry.key, pubspecConfig))) {
+      if (entry.value is Map<String, dynamic>) {
+        themeData = entry.value as Map<String, dynamic>;
+        result.addAll(
+          {
+            entry.key.camelCase: _resolveEntry(
+              entry.value as Map<String, dynamic>,
+              pubspecConfig,
+              allData: allData,
+            )
+          },
+        );
+      }
+    }
+    return result..removeWhere((key, value) => value.isEmpty);
+  }
+
+  Map<String, String> _resolveEntry(
+    Map<String, dynamic> data,
+    PubspecConfig pubspecConfig, {
+    String keys = '',
+    Map<String, dynamic> allData = const {},
   }) {
     final result = <String, String>{};
-    final Iterable<MapEntry<String, dynamic>> entries;
-
-    if (isRoot) {
-      entries = data.entries.where((entry) => _isThemeColor(entry.key, pubspecConfig));
-    } else {
-      entries = data.entries;
-    }
     if (_isColor(data)) {
       return {keys.camelCase: _valueFromThemeColors(data['value'], pubspecConfig.projectName.upperCamelCase)};
     }
-    for (final entry in entries) {
+    for (final entry in data.entries) {
       if (entry.value is Map<String, dynamic>) {
-        if (isRoot) themeData = entry.value as Map<String, dynamic>;
-        result.addAll(resolve(
+        result.addAll(_resolveEntry(
           entry.value as Map<String, dynamic>,
           pubspecConfig,
-          keys: isRoot ? '' : '${keys}_${entry.key}',
+          keys: '${keys}_${entry.key}',
           allData: allData,
-          isRoot: false,
         ));
       }
     }

@@ -1,15 +1,15 @@
 class GeneratedContent {
   final Map<String, String> files;
   final List<String> warnings;
-  final String? themeInstanceName;
+  final List<String> themeInstanceNames;
 
-  GeneratedContent(this.files, this.warnings, [this.themeInstanceName]);
+  GeneratedContent(this.files, this.warnings, [this.themeInstanceNames = const []]);
 
   operator +(GeneratedContent other) {
     return GeneratedContent(
       {...files, ...other.files},
       [...warnings, ...other.warnings],
-      themeInstanceName ?? other.themeInstanceName,
+      [...themeInstanceNames, ...other.themeInstanceNames],
     );
   }
 }
