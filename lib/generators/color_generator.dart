@@ -1,5 +1,5 @@
 import 'package:flutter_figma_theme_generator/config/pubspec_config.dart';
-import 'package:flutter_figma_theme_generator/generators/theme_generator.dart';
+import 'package:flutter_figma_theme_generator/generators/base_generator.dart';
 import 'package:flutter_figma_theme_generator/model/generated_content.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 

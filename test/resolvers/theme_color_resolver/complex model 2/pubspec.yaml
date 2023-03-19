@@ -1,0 +1,6 @@
+name: example
+
+flutter_figma_theme_generator:
+  colour_palette_key: Colour palette
+  default_theme: Light mode
+  default_dark_theme: Dark mode

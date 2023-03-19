@@ -5,7 +5,7 @@ import 'package:flutter_figma_theme_generator/resolvers/base_resolver.dart';
 import 'package:flutter_figma_theme_generator/utils/case_utils.dart';
 
 class ColorResolver extends BaseResolver<String> {
-  bool _isColor(Map<String, dynamic> data) => data['type'] == 'color' && data['value'] is String && (data['value'] as String).startsWith('hsla(');
+  bool _isColor(Map<String, dynamic> data) => data['type'] == 'color' && data['value'] is String && (data['value'] as String).startsWith(RegExp('#|hsla'));
 
   @override
   Map<String, String> resolve(
@@ -62,6 +62,12 @@ class ColorResolver extends BaseResolver<String> {
   }
 
   String _resolveColor(String data, Map<String, dynamic> colorPalette) {
+    if (data.startsWith('#')) {
+      return '0xFF${data.substring(1).toUpperCase()}';
+    }
+    if (!data.startsWith('hsla')) {
+      throw Exception('Unknown color format: $data');
+    }
     final hsla = data.substring(5, data.length - 1).split(',').map((e) => e.trim()).toList();
     return hslToHex(
       _valueOrFromColorPalette(hsla[0], colorPalette),

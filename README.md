@@ -7,6 +7,9 @@ There are quite a few different ways to create the tokens file. This package ass
 - The colors use a hsla format
 - The theme colors reference the colors
 
+# TODO's
+- [] Add support for gradients
+- [] Add support for shadows
 
 # TODO BELOW
 

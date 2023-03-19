@@ -250,6 +250,29 @@ class TextStyle {
         'overflow': overflow,
       };
 
+  static TextStyle fromJson(Map<String, dynamic> json) => TextStyle(
+        inherit: json['inherit'] as bool? ?? true,
+        color: json['color'] as String?,
+        backgroundColor: json['backgroundColor'] as String?,
+        fontFamily: json['fontFamily'] as String?,
+        fontSize: json['fontSize'] as double?,
+        fontWeight: json['fontWeight'] as String?,
+        fontStyle: json['fontStyle'] as String?,
+        letterSpacing: json['letterSpacing'] as double?,
+        wordSpacing: json['wordSpacing'] as double?,
+        textBaseline: json['textBaseline'] as String?,
+        height: json['height'] as double?,
+        decoration: json['decoration'] as String?,
+        decorationColor: json['decorationColor'] as String?,
+        decorationStyle: json['decorationStyle'] as String?,
+        decorationThickness: json['decorationThickness'] as double?,
+        debugLabel: json['debugLabel'] as String?,
+        shadows: json['shadows'] as List<String>?,
+        fontFeatures: json['fontFeatures'] as List<String>?,
+        fontVariations: json['fontVariations'] as List<String>?,
+        overflow: json['overflow'] as String?,
+      );
+
   @override
   String toString() {
     return 'TextStyle(inherit: $inherit, color: $color, backgroundColor: $backgroundColor, fontFamily: ${fontFamily is String ? '"$fontFamily"' : fontFamily}, fontSize: $fontSize, fontWeight: $fontWeight, fontStyle: $fontStyle, letterSpacing: $letterSpacing, wordSpacing: $wordSpacing, textBaseline: $textBaseline, height: $height, decoration: $decoration, decorationColor: $decorationColor, decorationStyle: $decorationStyle, decorationThickness: $decorationThickness, debugLabel: $debugLabel, shadows: $shadows, fontFeatures: $fontFeatures, fontVariations: $fontVariations, overflow: $overflow)';
