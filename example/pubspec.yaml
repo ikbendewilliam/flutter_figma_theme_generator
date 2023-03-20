@@ -24,8 +24,7 @@ flutter:
   uses-material-design: true
 
 flutter_figma_theme_generator:
-  colour_palette_key: Source/Colour palette
-  typography_key: Source/Typography
-  default_theme: tokens-theme-dark.json
-  default_theme_is_dark_mode: true
-  default_light: ExampleColorsThemeLightMode
+  colour_palette_key: Source
+  typography_key: Typography
+  default_theme: Light-mode
+  default_theme_is_dark_mode: false

@@ -24,6 +24,6 @@ flutter:
   uses-material-design: true
 
 flutter_figma_theme_generator:
-  colour_palette_key: Source/Colour palette
-  typography_key: Source/Typography
+  colour_palette_key: Source
+  typography_key: Typography
   default_theme: Light-mode

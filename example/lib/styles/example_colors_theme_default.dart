@@ -26,13 +26,17 @@ class ExampleColorsThemeDefault {
   final Color chatBubbleTextMe;
   final Color chatBubbleTextCoach;
   final Color choiceSelectionCardSurfaceEnabled;
-  final Color choiceSelectionCardBorderEnabled;
   final Color choiceSelectionCardLabelEnabled;
   final Color choiceSelectionCardSublabelEnabled;
   final Color choiceSelectionCardSurfaceSelected;
   final Color choiceSelectionCardBorderSelected;
   final Color choiceSelectionCardLabelSelected;
   final Color choiceSelectionCardSublabelSelected;
+  final Color choiceSelectionCardSurfaceBlocked;
+  final Color choiceSelectionCardLabelBlocked;
+  final Color choiceSelectionSegmentedPickerSurface;
+  final Color choiceSelectionSegmentedPickerSurfaceCurrent;
+  final Color choiceSelectionSegmentedPickerLabel;
   final Color copyTitleDefault;
   final Color copyTitleHighlight;
   final Color copyTitleDefaultInverted;
@@ -95,13 +99,17 @@ class ExampleColorsThemeDefault {
     Color? chatBubbleTextMe,
     Color? chatBubbleTextCoach,
     Color? choiceSelectionCardSurfaceEnabled,
-    Color? choiceSelectionCardBorderEnabled,
     Color? choiceSelectionCardLabelEnabled,
     Color? choiceSelectionCardSublabelEnabled,
     Color? choiceSelectionCardSurfaceSelected,
     Color? choiceSelectionCardBorderSelected,
     Color? choiceSelectionCardLabelSelected,
     Color? choiceSelectionCardSublabelSelected,
+    Color? choiceSelectionCardSurfaceBlocked,
+    Color? choiceSelectionCardLabelBlocked,
+    Color? choiceSelectionSegmentedPickerSurface,
+    Color? choiceSelectionSegmentedPickerSurfaceCurrent,
+    Color? choiceSelectionSegmentedPickerLabel,
     Color? copyTitleDefault,
     Color? copyTitleHighlight,
     Color? copyTitleDefaultInverted,
@@ -161,14 +169,18 @@ class ExampleColorsThemeDefault {
         chatBubbleSurfaceMe = chatBubbleSurfaceMe ?? ExampleColors.brandColoursBrandC148,
         chatBubbleTextMe = chatBubbleTextMe ?? ExampleColors.brandColoursNeutrals100,
         chatBubbleTextCoach = chatBubbleTextCoach ?? ExampleColors.brandColoursNeutrals16,
-        choiceSelectionCardSurfaceEnabled = choiceSelectionCardSurfaceEnabled ?? ExampleColors.brandColoursNeutrals100,
-        choiceSelectionCardBorderEnabled = choiceSelectionCardBorderEnabled ?? ExampleColors.brandColoursNeutrals72,
+        choiceSelectionCardSurfaceEnabled = choiceSelectionCardSurfaceEnabled ?? ExampleColors.brandColoursNeutrals96,
         choiceSelectionCardLabelEnabled = choiceSelectionCardLabelEnabled ?? ExampleColors.brandColoursNeutrals16,
         choiceSelectionCardSublabelEnabled = choiceSelectionCardSublabelEnabled ?? ExampleColors.brandColoursNeutrals32,
         choiceSelectionCardSurfaceSelected = choiceSelectionCardSurfaceSelected ?? ExampleColors.brandColoursBrandC196,
-        choiceSelectionCardBorderSelected = choiceSelectionCardBorderSelected ?? ExampleColors.brandColoursGradientsLR,
+        choiceSelectionCardBorderSelected = choiceSelectionCardBorderSelected ?? ExampleColors.brandColoursBrandC148,
         choiceSelectionCardLabelSelected = choiceSelectionCardLabelSelected ?? ExampleColors.brandColoursBrandC148,
         choiceSelectionCardSublabelSelected = choiceSelectionCardSublabelSelected ?? ExampleColors.brandColoursBrandC156,
+        choiceSelectionCardSurfaceBlocked = choiceSelectionCardSurfaceBlocked ?? ExampleColors.brandColoursNeutrals88,
+        choiceSelectionCardLabelBlocked = choiceSelectionCardLabelBlocked ?? ExampleColors.brandColoursNeutrals48,
+        choiceSelectionSegmentedPickerSurface = choiceSelectionSegmentedPickerSurface ?? ExampleColors.brandColoursNeutrals96,
+        choiceSelectionSegmentedPickerSurfaceCurrent = choiceSelectionSegmentedPickerSurfaceCurrent ?? ExampleColors.brandColoursNeutrals100,
+        choiceSelectionSegmentedPickerLabel = choiceSelectionSegmentedPickerLabel ?? ExampleColors.brandColoursNeutrals16,
         copyTitleDefault = copyTitleDefault ?? ExampleColors.brandColoursNeutrals0,
         copyTitleHighlight = copyTitleHighlight ?? ExampleColors.brandColoursBrandC148,
         copyTitleDefaultInverted = copyTitleDefaultInverted ?? ExampleColors.brandColoursNeutrals100,
